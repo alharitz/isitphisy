@@ -1,9 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+    const router = useRouter();
+
+    // redirect to login page
+    const handleLoginRedirect = () => {
+        router.push("/login");
+    }
+
+    // redirect to register page
+    const handleRegisterRedirect = () => {
+        router.push("/register");
+    }
+
     return (
         <div className='items-center justify-items-center min-h-screen bg-customDark'>
             <header>
