@@ -5,17 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import {z} from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
+
 import { Input } from "@/components/ui/input";
 
 
@@ -33,12 +23,8 @@ export default function Home() {
         router.push("/register");
     }
 
-    const formSchema = z.object({
-        checkLink: z.string().min(5).max(512),
-    });
-
     return (
-        <div className='items-center justify-items-center min-h-screen bg-customDark'>
+        <div className='items-center justify-items-center min-h-screen bg-customDark pb-20'>
 
             {/*header*/}
             <header>
@@ -54,12 +40,12 @@ export default function Home() {
                     <div className='flex gap-10 mr-10 text-xl font-base text-white tracking-wider font-kanit'>
 
                         {/*login*/}
-                        <Button size='lg' variant='ghost' className='border-2 border-white' onClick={handleLoginRedirect}>
+                        <Button size='lg' variant='ghost' className='border-2 border-white' onClick={handleRegisterRedirect}>
                             Register
                         </Button>
 
                         {/*register*/}
-                        <Button size='lg' variant='secondary' onClick={handleRegisterRedirect}>
+                        <Button size='lg' variant='secondary' onClick={handleLoginRedirect}>
                             Login
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                                  fill="31363F">
@@ -92,6 +78,14 @@ export default function Home() {
                         <Button type="submit" className='bg-customLight h-16 w-28 hover:bg-white hover:text-customLight font-normal tracking-wider text-lg font-kanit'>Check</Button>
                     </div>
 
+                    <p className='text-4xl font-ABeeZee text-white'>
+                        or
+                    </p>
+
+                    {/*register*/}
+                    <Button size='lg' variant='ghost' className='border-2 border-customLight text-customLight font-kanit h-12 text-xl hover:bg-customLight hover:border-customLight' onClick={handleRegisterRedirect}>
+                        Join with us
+                    </Button>
                 </div>
             </main>
         </div>
