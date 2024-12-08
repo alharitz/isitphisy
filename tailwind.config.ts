@@ -64,7 +64,9 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
 		fontFamily: {
-			kanit: ['Kanit', 'sans-serif']// Add Kanit as a custom font
+			kanit: ['Kanit', 'sans-serif'], // Jaro font
+			jaro: ['Jaro', 'sans-serif'], // Jaro font
+			ABeeZee: ['ABeeZee', 'sans-serif'], // Abeezee font
 		},
   	}
   },

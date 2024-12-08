@@ -1,4 +1,4 @@
-export default function register(){
+export default function register() {
     return (
         <div>
             register page
