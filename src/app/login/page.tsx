@@ -6,4 +6,4 @@ export default function Login(){
             Login page
         </div>
     );
-}2
+}
