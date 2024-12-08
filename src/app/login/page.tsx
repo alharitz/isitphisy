@@ -7,7 +7,6 @@ const LoginPage: React.FC = () => {
         <div style={styles.logoContainer}>
           <img src="public/assets/logo.png" alt="Logo" style={styles.logo} />
         </div>
-<<<<<<< HEAD
         <nav style={styles.nav}>
           <a href="#" style={styles.navLink}>Home</a>
           <a href="#" style={styles.navLink}>Register</a>
@@ -170,7 +169,3 @@ const styles = {
 };
 
 export default LoginPage;
-=======
-    );
-}
->>>>>>> 5dfde744629dc7acb75aa55c0cba74757879ddcf
