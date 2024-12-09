@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import {z} from "zod";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
@@ -43,6 +42,7 @@ export default function Home() {
         if (data.isPhishing) {
             setStatus(`Warning: ${data.message}`);
         } else {
+
             setStatus(data.message);
         }
     };
@@ -82,13 +82,13 @@ export default function Home() {
             </header>
 
             {/*main*/}
-            <main className='mt-32'>
+            <main className='mt-32 w-full'>
 
                 {/*main text*/}
-                <div className='flex flex-col items-center gap-10'>
+                <div className='flex flex-col items-center gap-20 w-full'>
                     {/*title*/}
                     <h1 className='font-jaro text-9xl tracking-widest text-white'>
-                        WELCOME TO IS IT PHISY
+                        WELCOME TO IS IT PHISY?
                     </h1>
 
                     {/*desc*/}
@@ -97,23 +97,28 @@ export default function Home() {
                     </h2>
 
                     {/*form*/}
-                    <div className="flex w-full justify-center items-center gap-10 mt-16">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                             fill="#F3F3F3">
-                            <path
-                                d="M440-226.67q122 0 207.67-85.5 85.66-85.5 85.66-207.83 0-122-85.66-207.67Q562-813.33 440-813.33q-122.33 0-207.83 85.66Q146.67-642 146.67-520q0 122.33 85.5 207.83 85.5 85.5 207.83 85.5ZM440-520Zm0 160q-83 0-147.5-44.5T200-520q28-70 92.5-115T440-680q82 0 146.5 45T680-520q-29 71-93.5 115.5T440-360Zm0-60q55 0 101-26.5t72-73.5q-26-46-72-73t-101-27q-56 0-102 27t-72 73q26 47 72 73.5T440-420Zm0-46.67q21.67 0 37.5-15.33 15.83-15.33 15.83-38 0-21.67-15.83-37.5-15.83-15.83-37.5-15.83-22.67 0-38 15.83-15.33 15.83-15.33 37.5 0 22.67 15.33 38 15.33 15.33 38 15.33ZM440-160q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T80-520q0-74 28.5-139.5t77-114.5q48.5-49 114-77.5T440-880q74 0 139.5 28.5T694-774q49 49 77.5 114.5T800-520q0 66-22 124.33-22 58.34-61 106l162.33 163-47 46.67-163-162.67q-47.66 39-106 60.84Q505-160 440-160Z"/>
-                        </svg>
-                        <form onSubmit={handleSubmit} className="flex items-center gap-10">
-                            <Input type="text" placeholder="Is it Phisy?"
-                              className="bg-gray-200 h-16 w-1/2 text-customDark font-kanit" value={url} onChange={(e) => setUrl(e.target.value)} required/>
-                            <Button size='lg' type="submit"
-                                className='bg-customLight h-16 w-28 hover:bg-white hover:text-customLight font-normal tracking-wider text-lg font-kanit'>
-                            Check
+                    <div className="w-full">
 
-                        </Button>
+                        <form onSubmit={handleSubmit}
+                              className="flex w-full item items-center justify-center gap-10 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                                 fill="#F3F3F3">
+                                <path
+                                    d="M440-226.67q122 0 207.67-85.5 85.66-85.5 85.66-207.83 0-122-85.66-207.67Q562-813.33 440-813.33q-122.33 0-207.83 85.66Q146.67-642 146.67-520q0 122.33 85.5 207.83 85.5 85.5 207.83 85.5ZM440-520Zm0 160q-83 0-147.5-44.5T200-520q28-70 92.5-115T440-680q82 0 146.5 45T680-520q-29 71-93.5 115.5T440-360Zm0-60q55 0 101-26.5t72-73.5q-26-46-72-73t-101-27q-56 0-102 27t-72 73q26 47 72 73.5T440-420Zm0-46.67q21.67 0 37.5-15.33 15.83-15.33 15.83-38 0-21.67-15.83-37.5-15.83-15.83-37.5-15.83-22.67 0-38 15.83-15.33 15.83-15.33 37.5 0 22.67 15.33 38 15.33 15.33 38 15.33ZM440-160q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T80-520q0-74 28.5-139.5t77-114.5q48.5-49 114-77.5T440-880q74 0 139.5 28.5T694-774q49 49 77.5 114.5T800-520q0 66-22 124.33-22 58.34-61 106l162.33 163-47 46.67-163-162.67q-47.66 39-106 60.84Q505-160 440-160Z"/>
+                            </svg>
+                            <Input type="text" placeholder="Is it Phisy?"
+                                   className="bg-gray-200 h-16 w-1/2 text-customDark font-kanit" value={url}
+                                   onChange={(e) => setUrl(e.target.value)} required/>
+                            <Button size='lg' type="submit"
+                                    className='bg-customLight h-16 w-28 hover:bg-white hover:text-customLight font-normal tracking-wider text-lg font-kanit'>
+                                Check
+
+                            </Button>
                         </form>
-                        {status && <p>{status}</p>}
-                    </div>  
+                        <div className="flex flex-row justify-center mt-24 w-full">
+                            {status && <p className="text-white text-4xl font-jaro">{status}</p>}
+                        </div>
+                        </div>
                     <p className='text-4xl font-ABeeZee text-white'>
                         or
                     </p>

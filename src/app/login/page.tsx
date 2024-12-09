@@ -1,15 +1,36 @@
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {Button} from "@/components/ui/button";
+import {useRouter} from "next/navigation";
 
 const LoginPage: React.FC = () => {
+  const router = useRouter();
+
+  // redirect to login page
+  const goBack = ()=>{
+    router.back();
+  }
+
+
   return (
     <div style={styles.container}>
-      <header style={styles.header}>
-        <div style={styles.logoContainer}>
-          <img src="public/assets/logo.png" alt="Logo" style={styles.logo} />
-        </div>
-        <nav style={styles.nav}>
-          <a href="#" style={styles.navLink}>Home</a>
-          <a href="#" style={styles.navLink}>Register</a>
+      {/*header*/}
+      <header>
+
+        {/*navbar*/}
+        <nav className='bg-customLight flex flex-row items-center justify-between'>
+
+          {/*logo*/}
+          <Link href="/" className='pl-2'>
+            <Image src="/assets/logo.png" alt="logo" width={130} height={130}/>
+          </Link>
+
+          <div className='flex gap-10 mr-10 text-xl font-base text-white tracking-wider font-kanit'>
+
+          </div>
         </nav>
       </header>
       <div style={styles.main}>
@@ -40,7 +61,7 @@ const LoginPage: React.FC = () => {
           </button>
           <p style={styles.accountText}>
             Don’t Have an Account?{" "}
-            <a href="#" style={styles.registerLink}>Register</a>
+            <a href="/register" style={styles.registerLink}>Register</a>
           </p>
         </div>
       </div>
