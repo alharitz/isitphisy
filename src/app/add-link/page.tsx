@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import { getAuth, onAuthStateChanged, User } from "firebase/auth"; // Import Firebase Auth
 // import { auth } from "@/firebase";  // Import the Firebase auth instance
 
@@ -14,24 +14,13 @@ export default function Home() {
 
     const router = useRouter();
 
-    // redirect to login page
-    const handleLoginRedirect = () => {
-        router.push("/login");
-    }
-
-    // redirect to register page
-    const handleRegisterRedirect = () => {
-        router.push("/register");
+    const handleHome = ()=>{
+        router.push('/');
     }
 
     // handle log out
     const handleLogoutRedirect = () => {
         router.push("/logout");
-    }
-
-    // add phising link
-    const handleAddLink = () => {
-        router.push("/add-link");
     }
 
     const [url, setUrl] = useState("");
@@ -52,16 +41,17 @@ export default function Home() {
 
         const data = await response.json();
 
+        //klo upload sukses
         if (data.isPhishing) {
-            setStatus(`Warning: ${data.message}`);
-            setStatusColor("text-red-500"); // Set color to red for phishing links
+            setStatus(`Cool, successfully adding the link`);
+            setStatusColor("text-green-500"); // Set color to green for safe links
         } else {
-            setStatus(data.message);
-            setStatusColor("text-gray-300"); // Set color to green for safe links
+            setStatus('Failed to add link');
+            setStatusColor("text-red-500"); // Set color to red for phishing links
         }
     };
 
-    const user = null; // INI PENG DI SINI
+    const user = "dummy"; // INI PENG DI SINI
 
     return (
         <div className='items-center justify-items-center min-h-screen bg-customDark'>
@@ -74,39 +64,24 @@ export default function Home() {
                     </Link>
 
                     <div className='flex gap-10 mr-10 text-xl font-base text-white tracking-wider font-kanit items-center'>
-                        {!user ? (
-                            // Show login/register buttons when not logged in
-                            <>
-                                <Button size='lg' variant='ghost' className='border-2 border-white' onClick={handleRegisterRedirect}>
-                                    Register
-                                </Button>
 
-                                <Button size='lg' variant='secondary' onClick={handleLoginRedirect}>
-                                    Login
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                         width="24px" fill="31363F">
-                                        <path
-                                            d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
-                                    </svg>
-                                </Button>
-                            </>
-                        ) : (
-                            // Show username and logout button when logged in
-                            <>
-                                <div className="text-white text-lg font-kanit">
-                                    Welcome, {user.displayName || "User"} {/* Display the username */}
-                                </div>
+                        <div className="text-white text-lg font-kanit">
+                            Welcome, {user.displayName || "User"} {/* Display the username */}
+                        </div>
 
-                                <Button size='lg' variant='secondary' onClick={handleLogoutRedirect}>
-                                    Logout
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                         width="24px" fill="#000000">
-                                        <path
-                                            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
-                                    </svg>
-                                </Button>
-                            </>
-                        )}
+                        <Button size='lg' variant='ghost' className='border-2 border-white' onClick={handleHome}>
+                            Home
+                        </Button>
+
+                        <Button size='lg' variant='secondary' onClick={handleLogoutRedirect}>
+                            Logout
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                 width="24px" fill="#000000">
+                                <path
+                                    d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
+                            </svg>
+                        </Button>
+
                     </div>
                 </nav>
             </header>
@@ -118,12 +93,12 @@ export default function Home() {
                 <div className='flex flex-col items-center gap-20 w-full'>
                     {/*title*/}
                     <h1 className='font-jaro text-9xl tracking-widest text-white'>
-                        WELCOME TO IS IT PHISY?
+                        ADD PHISING LINK
                     </h1>
 
                     {/*desc*/}
                     <h2 className='text-4xl font-ABeeZee text-white'>
-                        Helping you to know if it's phising link or not.
+                        Are you sure want to add this link as phising link?
                     </h2>
 
                     {/*form*/}
@@ -141,7 +116,7 @@ export default function Home() {
                                    onChange={(e) => setUrl(e.target.value)} required/>
                             <Button size='lg' type="submit"
                                     className='bg-customLight h-16 w-28 hover:bg-white hover:text-customLight font-normal tracking-wider text-lg font-kanit'>
-                                Check
+                                Add
                             </Button>
                         </form>
                         <div className="flex flex-row justify-center mt-24 w-full">
@@ -149,16 +124,6 @@ export default function Home() {
                                 <p className={`${statusColor} text-4xl font-jaro`}>{status}</p>} {/* Apply dynamic color */}
                         </div>
                     </div>
-                    <p className='text-4xl font-ABeeZee text-white'>
-                        or
-                    </p>
-
-                    {/*addlink*/}
-                    <Button size='lg' variant='ghost'
-                            className='border-2 border-customLight text-customLight font-kanit h-12 text-xl hover:bg-customLight hover:border-customLight'
-                            onClick={handleAddLink}>
-                        Add Link
-                    </Button>
                 </div>
             </main>
 

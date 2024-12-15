@@ -1,8 +1,18 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {useRouter} from "next/navigation";
+import {Button} from "@/components/ui/button";
 
 const Register = () => {
+    const router = useRouter();
+
+    const handleHome = ()=>{
+        router.push('/');
+    }
+
   return (
     <div
       style={{
@@ -14,49 +24,24 @@ const Register = () => {
         overflow: "hidden",
       }}
     >
-      {/* Header Section */}
-      <header
-        style={{
-          backgroundColor: "#76abae",
-          padding: "1rem 2rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: "120px",
-        }}
-      >
-        <div>
-          <img
-            src="/logo-placeholder.png" // Replace with actual logo path
-            alt="Logo"
-            style={{ height: "70px" }}
-          />
-        </div>
-        <nav style={{ display: "flex", gap: "2rem" }}>
-          <a
-            href="/home"
-            style={{
-              textDecoration: "none",
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: "30px",
-            }}
-          >
-            Home
-          </a>
-          <a
-            href="/login"
-            style={{
-              textDecoration: "none",
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: "30px",
-            }}
-          >
-            Log In
-          </a>
-        </nav>
-      </header>
+        {/*header*/}
+        <header>
+
+            {/*navbar*/}
+            <nav className='bg-customLight flex flex-row items-center justify-between'>
+
+                {/*logo*/}
+                <Link href="/" className='pl-2'>
+                    <Image src="/assets/logo.png" alt="logo" width={130} height={130}/>
+                </Link>
+
+                <div className='flex gap-10 mr-10 text-xl font-base text-white tracking-wider font-kanit'>
+                    <Button size='lg' variant='ghost' className='border-2 border-white' onClick={handleHome}>
+                        Home
+                    </Button>
+                </div>
+            </nav>
+        </header>
 
       {/* Main Section */}
       <div
@@ -73,7 +58,7 @@ const Register = () => {
             backgroundColor: "#d9d9d9",
             padding: "3rem",
             borderRadius: "20px",
-            width: "33%", // Narrower for portrait style
+            width: "40%", // Narrower for portrait style
             height: "70vh", // Taller for portrait proportions
             textAlign: "center",
             boxShadow: "0 6px 10px rgba(0, 0, 0, 0.15)",
@@ -112,17 +97,6 @@ const Register = () => {
 
             {/* Phone and Email */}
             <div style={{ display: "flex", gap: "1rem" }}>
-              <input
-                type="text"
-                placeholder="Phone"
-                style={{
-                  flex: 1,
-                  padding: "1rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "7px",
-                  backgroundColor: "#bcbdbf",
-                }}
-              />
               <input
                 type="email"
                 placeholder="Email"

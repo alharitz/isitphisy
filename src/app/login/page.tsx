@@ -10,8 +10,8 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
 
   // redirect to login page
-  const goBack = ()=>{
-    router.back();
+  const handleHome = ()=>{
+    router.push('/');
   }
 
 
@@ -29,10 +29,13 @@ const LoginPage: React.FC = () => {
           </Link>
 
           <div className='flex gap-10 mr-10 text-xl font-base text-white tracking-wider font-kanit'>
-
+            <Button size='lg' variant='ghost' className='border-2 border-white' onClick={handleHome}>
+              Home
+            </Button>
           </div>
         </nav>
       </header>
+
       <div style={styles.main}>
         <div style={styles.loginBox}>
           <h2 style={styles.title}>Log In</h2>
